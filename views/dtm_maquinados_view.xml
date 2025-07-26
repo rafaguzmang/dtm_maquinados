@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dtm_maquinados_form_view" model="ir.ui.view">
+            <field name="name">dtm_maquinados_form</field>
+            <field name="model">dtm.maquinados</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                         <button type="object" name="action_finalizar" string="FINALIZAR ORDEN" icon="fa-print" title="print" class="btn btn-primary"/>
+                    </header>
+                    <sheet>
+                        <div class="row ">
+                            <h1 class="d-flex justify-content-between">
+                                <div class="col-2">
+                                    <field name="tipo_orden"/>
+                                </div>
+                                <div class="col-2">
+                                    <field name="orden_trabajo"/>
+                                </div>
+                            </h1>
+                        </div>
+                        <group >
+                            <field name="revision_ot"/>
+                            <field name="disenador"/>
+                            <field name="create_date" string="Fecha de Solicitud"/>
+                        </group>
+                        <field name="maquinados_id">
+                            <tree>
+                                <field name="nombre"/>
+                                <field name="tipo_servicio"/>
+                                <field name="cantidad"/>
+                                <field name="terminado" widget="boolean_toggle"/>
+                            </tree>
+                            <form>
+                                    <group>
+                                        <group>
+                                            <field name="tipo_servicio"/>
+                                            <field name="nombre"/>
+                                            <field name="cantidad" />
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Materiales">
+                                            <field name="material_id">
+                                                <tree>
+                                                    <field name="materials_list" readonly="1"/>
+                                                    <field name="materials_cuantity" readonly="1"/>
+
+                                                </tree>
+                                            </field>
+                                        </page>
+                                        <page string="Anexos">
+                                           <field name="anexos_id">
+                                                <tree>
+                                                    <field name="name" invisible="0"></field>
+                                                </tree>
+                                                <form>
+                                                    <group >
+                                                        <field name="datas" filename="nombre" widget="pdf_viewer"></field>
+                                                        <field name="name" invisible="1"></field>
+                                                    </group>
+                                                </form>
+                                           </field>
+                                        </page>
+                                    </notebook>
+
+                            </form>
+                        </field>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dtm_maquinados_tree_view" model="ir.ui.view">
+            <field name="name">dtm_maquinados_tree</field>
+            <field name="model">dtm.maquinados</field>
+            <field name="arch" type="xml">
+                <tree create="0">
+                    <field name="orden_trabajo"/>
+                    <field name="tipo_orden"/>
+                    <field name="revision_ot"/>
+                    <field name="disenador"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dtm_maquinados_search_view" model="ir.ui.view">
+            <field name="name">dtm_maquinados_search</field>
+            <field name="model">dtm.maquinados</field>
+            <field name="arch" type="xml">
+                  <search >
+                    <field name="orden_trabajo"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="dtm_maquinados_act_window" model="ir.actions.act_window">
+            <field name="name">Maquinados</field>
+            <field name="res_model">dtm.maquinados</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--        <menuitem id="dtm_maquinados_menu" action="dtm_maquinados_act_window"/>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <menuitem name="Maquinados" id="menu_root_dtm_maquinados">
+        <menuitem id="dtm_maquinados_menu" action="dtm_maquinados_act_window"/>
+        <menuitem id="dtm_maquinados_terminados_menu" action="dtm_maquinados_terminados_act_window"/>
+
+     </menuitem>
+</odoo>
