@@ -58,7 +58,6 @@ class Servicios(models.Model):
     tipo_servicio = fields.Char(string="Tipo de Servicio", readonly=True)
     cantidad = fields.Integer(string="Cantidad", readonly=True)
     fecha_solicitud = fields.Date(string="Fecha de Solicitud", readonly=True)
-    material_id = fields.Many2many("dtm.materials.line", readonly=True)
     anexos_id = fields.Many2many("ir.attachment", readonly=True)
     terminado = fields.Boolean()
 

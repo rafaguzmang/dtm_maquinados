@@ -41,15 +41,6 @@
                                         </group>
                                     </group>
                                     <notebook>
-                                        <page string="Materiales">
-                                            <field name="material_id">
-                                                <tree>
-                                                    <field name="materials_list" readonly="1"/>
-                                                    <field name="materials_cuantity" readonly="1"/>
-
-                                                </tree>
-                                            </field>
-                                        </page>
                                         <page string="Anexos">
                                            <field name="anexos_id">
                                                 <tree>
