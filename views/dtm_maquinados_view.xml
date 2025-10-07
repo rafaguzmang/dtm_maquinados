@@ -8,7 +8,8 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                         <button type="object" name="action_finalizar" string="FINALIZAR ORDEN" icon="fa-print" title="print" class="btn btn-primary"/>
+                         <button type="object" name="action_finalizar" string="FINALIZAR ORDEN" icon="fa-print" title="print" class="btn btn-primary" attrs="{'invisible':[('finalizado','=',False)]}"/>
+<!--                        "{'invisible':[('start','=',True)]}"-->
                     </header>
                     <sheet>
                         <div class="row ">
@@ -25,37 +26,53 @@
                             <field name="revision_ot"/>
                             <field name="disenador"/>
                             <field name="create_date" string="Fecha de Solicitud"/>
+                            <field name="finalizado" invisible="1"/>
                         </group>
                         <field name="maquinados_id">
-                            <tree>
+                            <tree create="0">
                                 <field name="nombre"/>
-                                <field name="tipo_servicio"/>
+                                <button type="object" name="action_inicio" icon="fa-play" title="plus" class="btn btn-success" attrs="{'invisible':['|',('terminado','=',True),('start','=',True)]}"/>
+                                <button type="object" name="action_stop" icon="fa-stop" title="plus" class="btn btn-warning" attrs="{'invisible':['|',('terminado','=',True),('start','=',False)]}"/>
                                 <field name="cantidad"/>
-                                <field name="terminado" widget="boolean_toggle"/>
+                                <field name="contador"/>
+                                <button type="object" name="action_mas" icon="fa-chevron-up" title="plus" class="btn btn-primary" attrs="{'invisible':['|',('start','=',False),('terminado','=',True)]}" />
+                                <field name="status" widget="progressbar"/>
+                                <field name="tiempo_total" />
+                                <field name="terminado" invisible="1"/>
+                                <field name="start" invisible="1"/>
                             </tree>
                             <form>
+                                <group>
                                     <group>
-                                        <group>
-                                            <field name="tipo_servicio"/>
-                                            <field name="nombre"/>
-                                            <field name="cantidad" />
-                                        </group>
+                                        <field name="tipo_servicio"/>
+                                        <field name="nombre"/>
+                                        <field name="cantidad" />
                                     </group>
-                                    <notebook>
-                                        <page string="Anexos">
-                                           <field name="anexos_id">
-                                                <tree>
-                                                    <field name="name" invisible="0"></field>
-                                                </tree>
-                                                <form>
-                                                    <group >
-                                                        <field name="datas" filename="nombre" widget="pdf_viewer"></field>
-                                                        <field name="name" invisible="1"></field>
-                                                    </group>
-                                                </form>
-                                           </field>
-                                        </page>
-                                    </notebook>
+                                </group>
+                                <notebook>
+                                    <page string="Anexos">
+                                       <field name="anexos_id">
+                                            <tree>
+                                                <field name="name" invisible="0"></field>
+                                            </tree>
+                                            <form>
+                                                <group >
+                                                    <field name="datas" filename="nombre" widget="pdf_viewer"></field>
+                                                    <field name="name" invisible="1"></field>
+                                                </group>
+                                            </form>
+                                       </field>
+                                    </page>
+                                    <page string="Tiempos">
+                                       <field name="tiempos_id">
+                                            <tree>
+                                                <field name="create_date" string="Fecha"/>
+                                                <field name="tiempo"/>
+                                                <field name="contador"/>
+                                            </tree>
+                                       </field>
+                                    </page>
+                                </notebook>
 
                             </form>
                         </field>
@@ -74,6 +91,7 @@
                     <field name="tipo_orden"/>
                     <field name="revision_ot"/>
                     <field name="disenador"/>
+                    <field name="status" widget="progressbar"/>
                 </tree>
             </field>
         </record>

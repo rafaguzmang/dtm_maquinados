@@ -31,6 +31,8 @@
                                 <field name="nombre"/>
                                 <field name="tipo_servicio"/>
                                 <field name="cantidad"/>
+                                <field name="tiempo_total" />
+
                             </tree>
                             <form>
                                     <group>
@@ -38,6 +40,8 @@
                                             <field name="tipo_servicio"/>
                                             <field name="nombre"/>
                                             <field name="cantidad" />
+                                            <field name="tiempo_total" />
+
                                         </group>
                                     </group>
                                     <notebook>
@@ -52,6 +56,15 @@
                                                         <field name="name" invisible="1"></field>
                                                     </group>
                                                 </form>
+                                           </field>
+                                        </page>
+                                        <page string="Tiempos">
+                                           <field name="tiempos_id">
+                                                <tree>
+                                                    <field name="create_date" string="Fecha"/>
+                                                    <field name="tiempo"/>
+                                                    <field name="contador"/>
+                                                </tree>
                                            </field>
                                         </page>
                                     </notebook>
