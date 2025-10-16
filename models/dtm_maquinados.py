@@ -75,13 +75,13 @@ class Maquinados(models.Model):
                     get_finalizados = self.env['dtm.maquinados.servicios'].create(vals)
                 for tiempo in servicio.tiempos_id:
                     tiempo.write({'model_id':None,'model_id2':get_finalizados.id,})
-                # servicio.unlink()
+                servicio.unlink()
             procesos = self.env['dtm.proceso'].search([('ot_number','=',self.orden_trabajo),('tipe_order','=',self.tipo_orden),('revision_ot','=',self.revision_ot)])
             if procesos:
                 procesos.write({
                     'status':'calidad'
                 })
-            # self.unlink()
+            self.unlink()
             return self.env.ref('dtm_maquinados.dtm_maquinados_act_window').read()[0]
 
 class Servicios(models.Model):
