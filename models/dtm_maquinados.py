@@ -31,7 +31,6 @@ class Maquinados(models.Model):
             if False not in record.maquinados_id.mapped('terminado'):
                 record.finalizado = True
 
-
     def get_view(self, view_id=None, view_type='form', **options):
         res = super(Maquinados,self).get_view(view_id, view_type,**options)
         get_this = self.env['dtm.maquinados'].search([])
@@ -73,6 +72,40 @@ class Maquinados(models.Model):
                     get_finalizados.write(vals)
                 else:
                     get_finalizados = self.env['dtm.maquinados.servicios'].create(vals)
+                # Se mandan los máquinados listos para ingresar a almacén
+                almacen = self.env['dtm.compras.realizado'].search(
+                    [('orden_trabajo', '=', servicio.model_id.orden_trabajo),('nombre', '=', servicio.nombre), ('revision_ot', '=', servicio.model_id.revision_ot),
+                     ('tipo_orden', '=', servicio.model_id.tipo_orden)])
+                # Busca el código del material
+                get_orden = self.env['dtm.odt'].search([('ot_number','=',servicio.model_id.orden_trabajo),('revision_ot','=',servicio.model_id.revision_ot)],limit=1)
+                get_codigo = get_orden.lista_material_id
+                maquinado = get_codigo.filtered(lambda m: "Maquinado" in m.material_id.nombre)
+                codigo = maquinado.filtered(lambda m: servicio.nombre in m.material_id.nombre )
+
+
+                vals_almacen = {
+                    'orden_trabajo':servicio.model_id.orden_trabajo,
+                    'tipo_orden':servicio.model_id.tipo_orden,
+                    'revision_ot':servicio.model_id.revision_ot,
+                    'solicitado':datetime.today(),
+                    'proveedor':'DTM',
+                    'codigo':codigo.material_id.id,
+                    'nombre':servicio.nombre,
+                    'cantidad':servicio.cantidad,
+                    'unitario':0,
+                    'costo':0,
+                    'orden_compra':servicio.model_id.orden_trabajo,
+                    'mostrador':0,
+                    'mayoreo':0,
+                    'listo_btn':True,
+                    'autoriza':servicio.model_id.disenador,
+                }
+
+                if almacen:
+                    almacen.write(vals_almacen)
+                else:
+                    self.env['dtm.compras.realizado'].create(vals_almacen)
+
                 for tiempo in servicio.tiempos_id:
                     tiempo.write({'model_id':None,'model_id2':get_finalizados.id,})
                 servicio.unlink()
@@ -81,6 +114,7 @@ class Maquinados(models.Model):
                 procesos.write({
                     'status':'calidad'
                 })
+
             self.unlink()
             return self.env.ref('dtm_maquinados.dtm_maquinados_act_window').read()[0]
 
