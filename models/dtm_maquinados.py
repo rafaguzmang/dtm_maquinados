@@ -17,6 +17,15 @@ class Maquinados(models.Model):
     finalizado = fields.Boolean(compute="_compute_finalizado")
     status = fields.Float(compute="_compute_status")
 
+    def write(self,vals):
+        res = super(Maquinados,self).write(vals)
+        self.env['bus.bus']._sendone(
+            'canal_maquinados',
+            'maquinados',
+            {'mensaje':'Actualizado por Maquinados'}
+        )
+        return res
+
     def _compute_status(self):
         for record in self:
             record.status = 0
@@ -151,6 +160,15 @@ class Temporales(models.Model):
     tiempos_id = fields.One2many('dtm.maquinados.tiempos','model_id')
     timer = fields.Datetime()
     tiempo_total = fields.Float(string="Tiempo", readonly=True)
+
+    def write(self, vals):
+        res = super(Temporales, self).write(vals)
+        self.env['bus.bus']._sendone(
+            'canal_maquinados',
+            'maquinados',
+            {'mensaje': 'Actualizado por Maquinados'}
+        )
+        return res
 
     def action_inicio(self):
         self.start = True
