@@ -163,11 +163,11 @@ class Temporales(models.Model):
 
     def write(self, vals):
         res = super(Temporales, self).write(vals)
-        self.env['bus.bus']._sendone(
-            'canal_maquinados',
-            'maquinados',
-            {'mensaje': 'Actualizado por Maquinados'}
-        )
+        # self.env['bus.bus']._sendone(
+        #     'canal_maquinados',
+        #     'maquinados',
+        #     {'mensaje': 'Actualizado por Maquinados'}
+        # )
         return res
 
     def action_inicio(self):
