@@ -7,10 +7,11 @@
     'license': 'LGPL-3',
     'depends': ['dtm_odt'],
     'data': [
+        'security/res_groups.xml',
+        'security/ir.model.access.csv',
         'views/dtm_maquinados_view.xml',
         'views/dtm_maquinados_terminados_view.xml',
         'views/dtm_menu.xml',
-        'security/ir.model.access.csv'
     ],
     'installable': True,
     'auto_install': False

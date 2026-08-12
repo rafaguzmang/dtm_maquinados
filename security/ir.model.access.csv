@@ -1,9 +1,24 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_dtm_maquinados,access.dtm.maquinados,model_dtm_maquinados,base.group_user,1,1,1,1
-access_dtm_maquinados_servicios,access.dtm.dtm.maquinados.servicios,model_dtm_maquinados_servicios,base.group_user,1,1,1,1
-access_dtm_maquinados_terminados,access.dtm.maquinados.terminados,model_dtm_maquinados_terminados,base.group_user,1,1,1,1
-access_dtm_maquinados_temporales,access.dtm.maquinados.temporales,model_dtm_maquinados_temporales,base.group_user,1,1,1,1
-access_dtm_maquinados_tiempos,access.dtm.maquinados.tiempos,model_dtm_maquinados_tiempos,base.group_user,1,1,1,1
+access_dtm_maquinados_admin,access.dtm.maquinados_admin,model_dtm_maquinados,group_maquinados_admin,1,1,1,1
+access_dtm_maquinados_user,access.dtm.maquinados_user,model_dtm_maquinados,group_maquinados_user,1,1,1,0
+access_dtm_maquinados_restriccion,access.dtm.maquinados_restriccion,model_dtm_maquinados,group_maquinados_restriccion,1,1,1,1
+
+access_dtm_maquinados_servicios_admin,access.dtm.dtm.maquinados.servicios_admin,model_dtm_maquinados_servicios,group_maquinados_admin,1,1,1,1
+access_dtm_maquinados_servicios_user,access.dtm.dtm.maquinados.servicios_user,model_dtm_maquinados_servicios,group_maquinados_user,1,1,1,0
+access_dtm_maquinados_servicios_restriccion,access.dtm.dtm.maquinados.servicios_restriccion,model_dtm_maquinados_servicios,group_maquinados_restriccion,1,1,1,1
+
+access_dtm_maquinados_terminados_admin,access.dtm.maquinados.terminados_admin,model_dtm_maquinados_terminados,group_maquinados_admin,1,1,1,1
+access_dtm_maquinados_terminados_user,access.dtm.maquinados.terminados_user,model_dtm_maquinados_terminados,group_maquinados_user,1,1,1,0
+access_dtm_maquinados_terminados_restriccion,access.dtm.maquinados.terminados_restriccion,model_dtm_maquinados_terminados,group_maquinados_restriccion,1,1,1,1
+
+access_dtm_maquinados_temporales_admin,access.dtm.maquinados.temporales_admin,model_dtm_maquinados_temporales,group_maquinados_admin,1,1,1,1
+access_dtm_maquinados_temporales_user,access.dtm.maquinados.temporales_user,model_dtm_maquinados_temporales,group_maquinados_user,1,1,1,0
+access_dtm_maquinados_temporales_restriccion,access.dtm.maquinados.temporales,model_dtm_maquinados_temporales,group_maquinados_restriccion,1,1,1,1
+
+access_dtm_maquinados_tiempos_admin,access.dtm.maquinados.tiempos_admin,model_dtm_maquinados_tiempos,group_maquinados_admin,1,1,1,1
+access_dtm_maquinados_tiempos_user,access.dtm.maquinados.tiempos_user,model_dtm_maquinados_tiempos,group_maquinados_user,1,1,1,0
+access_dtm_maquinados_tiempos_restriccion,access.dtm.maquinados.tiempos_restriccion,model_dtm_maquinados_tiempos,group_maquinados_restriccion,1,1,1,1
+
 
 
 

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-     <menuitem name="Maquinados" id="menu_root_dtm_maquinados">
+     <menuitem name="Maquinados" id="menu_root_dtm_maquinados" groups="group_maquinados_admin,group_maquinados_user">    
         <menuitem id="dtm_maquinados_menu" action="dtm_maquinados_act_window"/>
         <menuitem id="dtm_maquinados_terminados_menu" action="dtm_maquinados_terminados_act_window"/>
-
      </menuitem>
 </odoo>
